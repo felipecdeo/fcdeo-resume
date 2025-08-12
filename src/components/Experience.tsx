@@ -1,31 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { t } from '../assets/translator';
 
 const experiences = [
   {
-    title: 'Senior Frontend Developer',
-    company: 'TechCorp Inc.',
-    period: '2022 - Present',
-    description: 'Leading frontend development for enterprise applications using React and TypeScript. Mentoring junior developers and architecting scalable solutions.',
-    technologies: ['React', 'TypeScript', 'Next.js', 'GraphQL'],
+    titleKey: 'exp1Title',
+    company: 'FK Grupo',
+    period: '2023 - Present',
+    descKey: 'exp1Desc',
+    technologies: ['React', 'ReactNative', 'TypeScript', 'Node.js', 'SQL Server', 'MongoDB', 'RabbitMQ'],
   },
   {
-    title: 'Frontend Developer',
-    company: 'Digital Solutions Ltd.',
-    period: '2020 - 2022',
-    description: 'Developed responsive web applications and mobile apps. Collaborated with design teams to implement pixel-perfect UIs.',
-    technologies: ['React', 'JavaScript', 'CSS3', 'Node.js'],
+    titleKey: 'exp2Title',
+    company: 'FK Grupo',
+    period: '2020 - 2021',
+    descKey: 'exp2Desc',
+    technologies: ['React', 'TypeScript', 'Node.js', 'SQL Server'],
   },
   {
-    title: 'Junior Developer',
-    company: 'StartupXYZ',
-    period: '2019 - 2020',
-    description: 'Built modern web interfaces and learned industry best practices. Contributed to open-source projects and internal tools.',
-    technologies: ['JavaScript', 'HTML5', 'CSS3', 'Vue.js'],
+    titleKey: 'exp3Title',
+    company: 'Freelancer',
+    period: '2018 - 2020',
+    descKey: 'exp3Desc',
+    technologies: ['JavaScript', 'HTML5', 'CSS3', 'Vue.js', 'Pug'],
   },
 ];
 
-const Experience: React.FC = () => {
+type Props = {
+  lang: 'en' | 'pt';
+};
+
+const Experience: React.FC<Props> = ({ lang }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -54,7 +59,7 @@ const Experience: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Professional Journey
+        {t('experienceTitle', lang)}
       </motion.h2>
 
       <motion.div
@@ -71,12 +76,12 @@ const Experience: React.FC = () => {
             transition={{ type: 'spring', stiffness: 300 }}
           >
             <div className="experience-header">
-              <h3 className="experience-title">{experience.title}</h3>
+              <h3 className="experience-title">{t(experience.titleKey, lang)}</h3>
               <h4 className="experience-company">{experience.company}</h4>
               <p className="experience-period">{experience.period}</p>
             </div>
             
-            <p className="experience-description">{experience.description}</p>
+            <p className="experience-description">{t(experience.descKey, lang)}</p>
             
             <div className="tech-tags">
               {experience.technologies.map((tech, techIndex) => (

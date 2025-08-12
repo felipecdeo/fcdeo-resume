@@ -26,7 +26,6 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
           currentIndex++;
         } else {
           clearInterval(typeWriter);
-          setTimeout(() => setShowCursor(false), 1000);
         }
       }, speed);
 
