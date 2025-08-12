@@ -42,7 +42,7 @@ const Experience: React.FC<Props> = ({ lang }) => {
     },
   };
 
-  const cardVariants = {
+  const cardVariants: any = {
     hidden: { opacity: 0, x: -50 },
     visible: {
       opacity: 1,

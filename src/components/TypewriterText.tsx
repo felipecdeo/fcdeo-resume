@@ -14,7 +14,6 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   speed = 50,
 }) => {
   const [displayText, setDisplayText] = useState('');
-  const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -38,7 +37,7 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   return (
     <span className={`typewriter ${className}`}>
       {displayText}
-      {showCursor && <span className="cursor">|</span>}
+      <span className="cursor">|</span>
     </span>
   );
 };
