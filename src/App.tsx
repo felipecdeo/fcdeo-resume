@@ -13,6 +13,7 @@ type Tab = 'about' | 'experience' | 'skills' | 'contact';
 function App() {
   const [activeTab, setActiveTab] = useState<Tab>('about');
   const [lang, setLang] = useState<Language>('pt');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const tabs = [
     { id: 'about' as Tab, label: lang === 'pt' ? 'Sobre Mim' : 'About Me', icon: User },
@@ -38,15 +39,21 @@ function App() {
 
   return (
     <div className="app">
-      <nav className="nav" style={{ display: 'flex', alignItems: 'center' }}>
-        <div style={{ display: 'flex', flex: 1, gap: 10 }}>
+      <nav className="nav">
+        <button className="menu-toggle" onClick={() => setMenuOpen((v) => !v)} aria-label="Abrir menu">
+          <span className="menu-icon">&#9776;</span>
+        </button>
+        <div className={`nav-links${menuOpen ? ' open' : ''}`}>
           {tabs.map((tab) => {
             const Icon = tab.icon;
             return (
               <motion.button
                 key={tab.id}
                 className={`nav-button ${activeTab === tab.id ? 'active' : ''}`}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  setActiveTab(tab.id);
+                  setMenuOpen(false);
+                }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -57,37 +64,19 @@ function App() {
           })}
         </div>
         {/* Language Switch */}
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <button
-            className={`lang-switch${lang === 'en' ? ' active' : ''}`}
-            onClick={() => setLang('en')}
-            style={{
-              padding: '4px 10px',
-              borderRadius: 6,
-              border: 'none',
-              color: lang === 'en' ? '#0a0a0aff' : '#fffafaff',
-              background: lang === 'en' ? '#eee' : 'transparent',
-              cursor: 'pointer',
-              fontWeight: lang === 'en' ? 'bold' : 'normal'
-            }}
+        <div className="lang-switch-container">
+          <div
+            className={`lang-switch-toggle ${lang} ${lang === 'en' ? 'active en' : 'pt'}`}
+            onClick={() => setLang(lang === 'pt' ? 'en' : 'pt')}
+            role="button"
+            tabIndex={0}
+            aria-label="Alternar idioma"
+            style={{ userSelect: 'none' }}
           >
-            EN
-          </button>
-          <button
-            className={`lang-switch${lang === 'pt' ? ' active' : ''}`}
-            onClick={() => setLang('pt')}
-            style={{
-              padding: '4px 10px',
-              borderRadius: 6,
-              border: 'none',
-              color: lang === 'pt' ? '#0a0a0aff' : '#fffafaff',
-              background: lang === 'pt' ? '#eee' : 'transparent',
-              cursor: 'pointer',
-              fontWeight: lang === 'pt' ? 'bold' : 'normal'
-            }}
-          >
-            PT
-          </button>
+            <span className="lang-switch-label pt">PT</span>
+            <span className="lang-switch-label en">EN</span>
+            <span className="lang-switch-knob" />
+          </div>
         </div>
       </nav>
 

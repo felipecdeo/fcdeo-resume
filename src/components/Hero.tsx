@@ -37,7 +37,7 @@ const Hero: React.FC<Props> = ({ lang }) => {
     >
       <motion.div variants={itemVariants}>
         <motion.img
-          src="../public/me.png"
+          src="me.png"
           alt="Profile"
           className="profile-image"
           initial={{ scale: 0.8 }}
