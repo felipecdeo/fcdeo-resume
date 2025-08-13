@@ -95,7 +95,7 @@ const Hero: React.FC<Props> = ({ lang }) => {
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
-          <span className="stat-number">5 +</span>
+          <span className="stat-number">5+</span>
           <span className="stat-label">{t('yearsExp', lang)}</span>
         </motion.div>
         <motion.div
